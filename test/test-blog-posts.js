@@ -14,3 +14,13 @@ const { closeServer, runServer, app } = require('../server');
 const { TEST_DATABASE_URL } = require('../config');
 
 chai.use(chaiHttp);
+
+//deletes database
+function tearDowndb () {
+    return new Promise ((resolve, recject) => {
+        console.warn('Warning: Deleting Database');
+        mongoose.connection.dropDatabase()
+        .then(resolve(result))
+        .catch(err => (err));
+    });
+}
